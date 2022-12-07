@@ -1,0 +1,32 @@
+## The project name would be used to name report files
+projectName='A great project'
+
+## This page will be loaded once initialized
+initialURL='https://myawesomeapp.com/login'
+
+
+## First load the page that you want to test and take a screenshot of the page 
+## save it to **sample_images** folder. 
+## Note instead of full page you can take a screenshot of a particular component also.
+## image must be placed inside sample_images folder
+imageToCompareWith='final_state.png'
+
+## The timer will start to run once this path is reached
+## you don't have to include the baseurl just path is enough
+urlPathToMonitor='user/details'
+
+## The max time before selenium will quit if expected urlPathToMonitor
+## is not reached this is in seconds
+maxWaitTime=60
+
+## These settings are used to get HAR data
+## browserModProxy is included so you won't have to change these
+browserMobProxyPath='./browsermob-proxy-2.1.4/bin/browsermob-proxy'
+browserMobProxyPort=9211
+
+## These settings are used to filter out excess data from HAR data for report
+## we omit options request and such
+## also we filter the request url so that only request to particular backend is recorded
+## you can remove the backend url to record all
+reportedRequests=["GET","POST","PUT","PATCH","DELETE"]
+filterReqUrl="api.myawesomeapp.com"
