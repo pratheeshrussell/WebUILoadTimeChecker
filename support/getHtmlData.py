@@ -21,14 +21,16 @@ def saveHtmlReport(har,reportedRequests,filterReqUrl,timetoload,imageData,projec
 
     timeinMs=int(timetoload.total_seconds() * 1000)
     # generate table data
-    tableData=''
+    tableData='' 
+    n=0
     for x in sortedEntries:
+        n+=1
         tableData+=f'''
-            <tr>
-                <td>{x['request']['url']}</td>
-                <td>{x['request']['method']}</td>
-                <td>{x['response']['status']}</td>
-                <td>{x['time']}</td>
+            <tr class="table-request-row request-row-{n}">
+                <td class="table-request request-url">{x['request']['url']}</td>
+                <td class="table-request request-method">{x['request']['method']}</td>
+                <td class="table-request request-status">{x['response']['status']}</td>
+                <td class="table-request request-timing">{x['time']}</td>
             </tr>
         '''
     html=f'''<!DOCTYPE html>
@@ -44,7 +46,7 @@ def saveHtmlReport(har,reportedRequests,filterReqUrl,timetoload,imageData,projec
                 <div class="col-6 d-flex flex-column justify-content-center align-items-center">
                     <h1>{projectName}</h1>
                     <span>It took</span>
-                    <span><strong>{timeinMs}</strong> milliseconds</span>
+                    <span class="load-timing"><strong class="fs-2">{timeinMs}</strong> milliseconds</span>
                     <span>to load the below component</span>
                     <div class="row col-12 d-flex justify-content-center">
                         <img src="data:image/png;base64,{initialImage}" class="img-fluid col-6" alt="initial">
